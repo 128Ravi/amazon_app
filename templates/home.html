@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Store</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<h1 class="title">🛒 My Amazon Store</h1>
+
+<a href="/cart" class="cart-btn">View Cart</a>
+<a href="/logout" class="logout-btn">Logout</a>
+
+{% for category, items in products.items() %}
+
+<h2 class="category">{{ category.upper() }}</h2>
+
+<div class="product-grid">
+
+{% for p in items %}
+
+<div class="card">
+
+<img src="{{ url_for('static', filename=p.image) }}" class="product-img">
+
+<h3>{{ p.name }}</h3>
+
+<p>₹{{ p.price }}</p>
+
+<a href="/add_to_cart/{{p.name}}/{{p.price}}">
+<button>Add to Cart</button>
+</a>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+{% endfor %}
+
+</body>
+</html>
